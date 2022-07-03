@@ -1,9 +1,9 @@
 import React from 'react';
-import Board from './Board';
+import Kanban from './Kanban';
 import "../style.css";
 
 const App = function () {
-    return <Board />
+    return <Kanban />
 };
 
 export default App;

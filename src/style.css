@@ -219,14 +219,14 @@ label {
   text-shadow: 2px 2px 10px black;
 }
 
-.board {
+.kanban {
   background-color: whitesmoke;
   border: 5px solid black;
   box-shadow: 0 0 50px 5px black;
   display: flex;
   height: max-content;
   margin: 20px;
-  min-height: calc(100vh - 40px);
+  min-height: calc(100vh - 40px - 52px);
   min-width: 1200px;
 }
 
@@ -312,4 +312,17 @@ label {
   font-weight: 600;
   margin: 5px auto;
   width: max-content;
+}
+
+.addTaskButton {
+  background-color: red;
+  color: white;
+  display: block;
+  margin: 0 auto;
+  border-radius: 20px;
+  padding: 5px 20px;
+  box-shadow: 2px 2px 10px black;
+  margin-top: 20px;
+  font-weight: 600;
+  letter-spacing: 2px;
 }

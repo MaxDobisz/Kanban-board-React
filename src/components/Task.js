@@ -5,8 +5,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import ContextTasks from './ContextTasks';
-import ContextColumns from './ContextColums'
+import ContextColumns from './ContextColums';
 import ContextSetState from './ContextClickHandler';
+import {nextColumnExist, previousColumnExist, spaceInNextColumn, spaceInPreviousColumn} from './clickHandlersHelper';
 
 const Task = function (props) {
     const { task:currentTask, column:currentColumn } = props;
@@ -21,31 +22,17 @@ const Task = function (props) {
             }
         });
 
-        const nextColumnExist = () => {
-            if(columnWithNextColumnId.length > 0) {
-                return true;
-            }
-            return false;
-        }
-
         const arrOfTasksNextColumn = tasksDataArr.filter((el) => {
             if(nextColumnId === el.idColumn) {
                 return el;
             }
-        } )
-
-        const spaceInNextColumn = () => {
-            if(arrOfTasksNextColumn.length < columnWithNextColumnId[0].limit) {
-                return true;
-            }
-            return false;
-        }
+        });
        
-        if(nextColumnExist()) {
-            if(spaceInNextColumn()) {
+        if(nextColumnExist(columnWithNextColumnId)) {
+            if(spaceInNextColumn(arrOfTasksNextColumn, columnWithNextColumnId)) {
                 const updatedTasks = tasksDataArr.map(el => {
                     if(currentTask.id === el.id) {
-                        return {...el, idColumn: el.idColumn + 1}
+                        return {...el, idColumn: el.idColumn + 1};
                     }
                     return el;
                 });
@@ -64,28 +51,14 @@ const Task = function (props) {
             }
         });
 
-        const previousColumnExist = () => {
-            if(columnWithPreviousColumnId.length > 0) {
-                return true;
-            }
-            return false;
-        };
-
         const arrOfTasksPreviousColumn = tasksDataArr.filter((el) => {
             if(previousColumnId === el.idColumn) {
                 return el;
             }
         });
-
-        const spaceInPreviousColumn = () => {
-            if(arrOfTasksPreviousColumn.length < columnWithPreviousColumnId[0].limit) {
-                return true;
-            }
-            return false;
-        }
        
-        if(previousColumnExist()) {
-            if(spaceInPreviousColumn()) {
+        if(previousColumnExist(columnWithPreviousColumnId)) {
+            if(spaceInPreviousColumn(arrOfTasksPreviousColumn, columnWithPreviousColumnId)) {
                 const updatedTasks = tasksDataArr.map(el => {
                     if(currentTask.id === el.id) {
                         return {...el, idColumn: el.idColumn - 1}
@@ -106,13 +79,13 @@ const Task = function (props) {
 
     return (
         <li className='task'>
-            <button type='button' className='buttonPrevious' onClick={() =>{clickPreviousHandler()}}>{'<'}</button>
+            <button type='button' className='buttonPrevious' onClick={clickPreviousHandler}>{'<'}</button>
             <div className='taskBody'>
                 <h3>{currentTask.name}</h3>
                 <p>{currentTask.user}</p>
                 <button type='button' className='remove' onClick={removeTask}>x</button>
             </div>
-            <button type='button' className='buttonNext' onClick={() =>{clickNextHandler()}}>{'>'}</button>
+            <button type='button' className='buttonNext' onClick={clickNextHandler}>{'>'}</button>
         </li>
     )
 }
