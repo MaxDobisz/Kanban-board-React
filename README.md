@@ -10,6 +10,9 @@ Features
 - Function components, hooks, and context API are used for building the project.
 - ESLint is used for code linting.
 
+![](./screenshots/1.png)
+
+
 Live: [Live Demo](https://magnificent-sorbet-3b9e63.netlify.app)
 
 
