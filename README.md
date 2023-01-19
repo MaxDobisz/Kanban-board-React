@@ -1,8 +1,8 @@
 # Kanban Board
 
 Welcome to my Kanban Board project. This project is designed to help users manage their work and improve their workflow.
-Features
 
+**Features:**
 - The board is divided into columns, each representing a different stage of the work process.
 - Tasks are represented by cards, and the card's position on the board represents its current stage of completion.
 - Limit of tasks for each column is applied.
